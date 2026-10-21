@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "slug": "bolta",
+  "name": "Bolta — planetariu offline",
+  "version": "1.1.2",
+  "updated": "2026-10-19",
+  "description": "Bolta: planetariu offline pentru orice loc și moment — cer proiectat, constelații, Soare, Lună, planete, evenimente apropiate și eclipsa totală din 2 august 2027.",
+  "egress": [],
+  "permissions": [
+    "geolocation",
+    "serviceWorker",
+    "localStorage"
+  ],
+  "storageKeys": [],
+  "sizeBytes": 692121,
+  "sha256": "a83b0050eaabb4bfd166b7e347d2d26d4d2c9a6801a6e65aaaca385904eca4cc",
+  "csp": {
+    "present": true,
+    "directives": {
+      "default-src": "'none'",
+      "script-src": "sha256×8",
+      "style-src": "'unsafe-inline'",
+      "img-src": "'self' data: blob:",
+      "media-src": "data: blob:",
+      "font-src": "data:",
+      "connect-src": "'none'",
+      "base-uri": "'none'",
+      "form-action": "'none'",
+      "frame-src": "'none'",
+      "object-src": "'none'",
+      "worker-src": "'self' blob:",
+      "manifest-src": "'self'"
+    },
+    "scriptInline": "hash",
+    "connect": "'none'"
+  },
+  "features": {
+    "export": true,
+    "import": true,
+    "i18n": [
+      "ro",
+      "en"
+    ],
+    "pwa": {
+      "manifest": true,
+      "serviceWorker": true
+    },
+    "modules": [
+      "core",
+      "label",
+      "bundle"
+    ]
+  },
+  "kit": {
+    "version": "1.1.1",
+    "modules": [
+      "core",
+      "label",
+      "bundle"
+    ]
+  },
+  "selfSerializing": false
+}
