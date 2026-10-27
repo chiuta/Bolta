@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.1.0 · **Ultima actualizare:** 2026-10-27
+**Versiune:** 2.2.0 · **Ultima actualizare:** 2026-10-27
 
 **Stare:** stabil (modul senzori este nou și experimental pe dispozitive fără busolă absolută) · **Offline:** complet (legătura spre Eclipsa-2027 cere internet, doar la clic)
 
@@ -28,6 +28,7 @@ Captura arată starea reală a aplicației pentru București, 14 octombrie 2026,
 8. **Mod roșu de noapte** (selectorul de temă): toate culorile, inclusiv cele din canvas, devin roșii. Există și tema luminoasă și cea întunecată (implicit după sistem).
 9a. **Mod senzori (2.1.0, 📱 în dreapta-sus a cerului).** Pe telefon sau tabletă cerul urmărește direcția în care îndrepți dispozitivul: direcția spatelui dispozitivului se calculează din senzorii de orientare (busolă și giroscop, `deviceorientation` W3C), vederea trece din „cerul întreg” într-o fereastră și se restaurează la oprire. **Nu folosește camera și nu folosește rețeaua**; pe iOS browserul cere permisiunea pentru senzorii de mișcare la apăsarea butonului. Dacă dispozitivul nu trimite orientare (de exemplu un calculator), modul se oprește singur după 2,5 s. Limite: busola dă nordul magnetic (fără corecția declinației), precizia este de câteva grade și depinde de calibrare; dacă dispozitivul nu are busolă absolută, nordul este doar aproximativ (un mesaj anunță). **Nu** este o suprapunere de realitate augmentată peste imaginea camerei (vezi „Nu s-a implementat” în `CHANGELOG.md`).
 9b. **Mod roșu de noapte rapid (2.1.0, 🔴).** Un buton lângă ⌂ pornește și oprește tema roșie (restaurează tema anterioară); tema roșie exista deja în selectorul de temă.
+9c. **Corecția nordului și modul cameră (2.2.0).** În modul senzori apare un panou sub cer: un cursor −180°…+180° corectează o busolă decalată sau declinația magnetică (nu se corectează automat), iar „Aliniază la Soare/Lună” stabilește corecția pornind de la un astru deasupra orizontului (îndreaptă spatele telefonului spre el; nu te uita direct la Soare). „📷 Cameră (RA)” arată camera din spate sub un canvas transparent cu cerul (camera pornește doar la clic, nimic nu se înregistrează sau trimite; câmpul vizual se reglează manual, 20°–100°, deci potrivirea cu cerul e aproximativă). Oprirea RA sau a modului senzori încheie pistele camerei.
 9c. **Vezi și: Eclipsa-2027.** Fila eclipsei trimite la [Eclipsa-2027](https://chiuta.github.io/Eclipsa-2027/), altă aplicație despre aceeași eclipsă (harta benzii totalității). Sunt aplicații diferite, nefuzionate; Eclipsa-2027 trimite înapoi.
 9. **Tipărire și export.** „Tipărește” folosește harta ca SVG vectorial; SVG și PNG se pot descărca (cu opțiune de culori inversate pentru hârtie).
 10. **Tastatură.** Canvasul se controlează complet: săgeți (mută privirea), `+`/`−`, `Home`, `Spațiu` (animație), `N` (acum), `,` și `.` (pas), `F` (tot cerul), `G` (grila), `C` (constelații), `0`–`8` (Soare, Lună, planete), `Enter`, `Esc`, iar filele se schimbă cu săgețile.
@@ -133,6 +134,7 @@ MIT — vezi fișierul `LICENSE` din rădăcina depozitului. Componentele terțe
 
 ## Istoric
 
+- **2.2.0 — 2026-10-27** (anterior: v2.1.0): corecția nordului (cursor, aliniere la Soare/Lună) și modul cameră (RA). Vezi `CHANGELOG.md`.
 - **2.1.0 — 2026-10-27** (anterior: v1.1.2): mod senzori (📱), mod roșu rapid (🔴), legătură spre Eclipsa-2027. Vezi `CHANGELOG.md`.
 - **1.1.2 — 2026-10-19:** buton „← înapoi la <sursă>” pentru `from=terra|orarium|vatra|fieldobserver|nota-zero` (8 limbi; alte valori ignorate). Parametrul `from` nu se salvează.
 - **1.1.1 — 2026-10-18:** locul din link doar pentru sesiune, `#t&ll` fără filă, validare reală a datei.
