@@ -2,7 +2,9 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 1.1.2 · **Last updated:** 2026-10-19
+**Version:** 2.1.0 · **Last updated:** 2026-10-27
+
+**Status:** stable (the sensor mode is new and experimental on devices without an absolute compass) · **Offline:** complete (the link to Eclipsa-2027 needs internet, only when you click it)
 
 Interface languages: **Română, English, Français, Italiano, Español, Português (PT), Deutsch, Magyar**
 
@@ -24,6 +26,9 @@ The screenshot shows the real state of the app for Bucharest, 14 October 2026, 2
 6. **The sky in words.** A text description of the sky and a table with the objects ordered by altitude, each with "Show in the sky".
 7. **Places and data.** Saved places, `.fff.json` backup, import, "Delete all".
 8. **Red night mode** (the theme selector): all colours, including those in the canvas, turn red. There are also the light theme and the dark one (by default following the system).
+9a. **Sensor mode (2.1.0, 📱 in the top right of the sky).** On a phone or tablet the sky follows where you point the device: the direction of the back of the device is computed from the orientation sensors (compass and gyroscope, W3C `deviceorientation`), the view switches from "whole sky" to a window and is restored when you switch the mode off. It uses **no camera and no network**; on iOS the browser asks for the motion-sensor permission when you press the button. If the device sends no orientation (e.g. a desktop), the mode switches itself off after 2.5 s. Limits: the compass gives magnetic north (no declination correction), accuracy is a few degrees and depends on calibration; if the device has no absolute compass, north is only approximate (a message says so). It is **not** an augmented-reality overlay on the camera image (see "Not implemented" in `CHANGELOG.md`).
+9b. **Quick red night mode (2.1.0, 🔴).** A button next to ⌂ switches the red theme on and off (it restores the previous theme); the red theme itself existed already in the theme selector.
+9c. **See also: Eclipsa-2027.** The eclipse tab links to [Eclipsa-2027](https://chiuta.github.io/Eclipsa-2027/), another app about the same eclipse (map of the band of totality). The two are different apps and are not merged; Eclipsa-2027 links back.
 9. **Printing and export.** "Print" uses the map as vector SVG; SVG and PNG can be downloaded (with an option for inverted colours for paper).
 10. **Keyboard.** The canvas is fully controllable: arrows (move the view), `+`/`−`, `Home`, `Space` (animation), `N` (now), `,` and `.` (step), `F` (whole sky), `G` (grid), `C` (constellations), `0`–`8` (Sun, Moon, planets), `Enter`, `Esc`, and the tabs are switched with the arrows.
 
@@ -128,6 +133,7 @@ MIT — see the `LICENSE` file at the root of the repository. The third-party co
 
 ## History
 
+- **2.1.0 — 2026-10-27** (previous: v1.1.2): sensor mode (📱), quick red night mode (🔴), link to Eclipsa-2027. See `CHANGELOG.md`.
 - **1.1.2 — 2026-10-19:** a "← back to <source>" button for `from=terra|orarium|vatra|fieldobserver|nota-zero` (8 languages; other values ignored). The `from` parameter is not saved.
 - **1.1.1 — 2026-10-18:** the place from the link is for the session only, `#t&ll` without a tab, real date validation.
 - **1.1.0 — 2026-10-18:** deep link `#sky&t=&ll=`.
