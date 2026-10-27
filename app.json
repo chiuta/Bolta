@@ -8,13 +8,12 @@
   "egress": [],
   "permissions": [
     "geolocation",
-    "deviceorientation",
     "serviceWorker",
     "localStorage"
   ],
   "storageKeys": [],
-  "sizeBytes": 692121,
-  "sha256": "a83b0050eaabb4bfd166b7e347d2d26d4d2c9a6801a6e65aaaca385904eca4cc",
+  "sizeBytes": 703481,
+  "sha256": "83fe64dab997caf1e822fda32de9ee925db8d6a038af4d9266bb5ae801d4eb86",
   "csp": {
     "present": true,
     "directives": {
@@ -40,7 +39,13 @@
     "import": true,
     "i18n": [
       "ro",
-      "en"
+      "en",
+      "fr",
+      "it",
+      "es",
+      "pt",
+      "hu",
+      "de"
     ],
     "pwa": {
       "manifest": true,
@@ -53,7 +58,7 @@
     ]
   },
   "kit": {
-    "version": "1.1.1",
+    "version": "1.2.0",
     "modules": [
       "core",
       "label",
