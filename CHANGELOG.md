@@ -1,5 +1,21 @@
 # Jurnal de modificări — Bolta
 
+## 2.2.0 — 2026-10-27
+
+Anterior: v2.1.0. Recenzie 2 (2026-10-27).
+
+- Nou: **corecția nordului** în modul senzori: cursor −180°…+180° (pentru busola decalată sau declinația magnetică, care nu se corectează automat) și butoanele **„Aliniază la Soare”** / **„Aliniază la Lună”** (îndreaptă spatele telefonului spre astru, dacă e deasupra orizontului, și apasă; sub orizont aplicația refuză explicit). „Resetează” revine la 0. Nu te uita direct la Soare (avertisment în pagină).
+- Nou: **modul cameră (RA)** — butonul „📷 Cameră (RA)” (apare în modul senzori): `getUserMedia` doar la clic, imaginea camerei din spate sub un canvas cu fundal transparent (stelele, planetele, Soarele, Luna și liniile desenate deasupra), câmp vizual al camerei reglat manual (20°–100°, implicit 50°). Imaginea rămâne pe telefon: nu se înregistrează și nu se trimite nicăieri; oprirea RA sau a modului senzori încheie pistele camerei. Potrivirea cu cerul este aproximativă (proiecție stereografică, câmp vizual manual).
+- Texte noi: RO și EN complete; pentru etichetele scurte (panou, butoane) și traduceri asistate de AI în fr/it/es/pt/hu/de, neverificate nativ; textele lungi (ajutor, mesaje) cad pe engleză.
+- Test nou `tests/calibrare-camera.test.mjs` (29 de verificări; Chromium cu cameră falsă, rețea blocată): corecție, aliniere la Soare (azimut calculat de aplicație), refuz sub orizont, fundal transparent în RA, pornire/oprire cameră (piste încheiate), refuz fără permisiune, limbi, 0 erori JS/CSP.
+- Curățenie: eliminat `bo_t1.js`, un fișier de lucru rămas din 2.1.0 (nu făcea parte din aplicație).
+- Hash-ul CSP al scriptului principal recalculat; `app.json`/`fff-info` (permisiuni: `getUserMedia`), `sw.js`, metadate aliniate la 2.2.0.
+
+### Nu s-a implementat
+- Corecția automată a declinației magnetice (ar cere un model, de ex. WMM, cu coeficienți care nu au fost verificați aici): rămâne corecția manuală / prin aliniere la Soare sau Lună.
+- Potrivire exactă cu camera: câmpul vizual real depinde de telefon (reglaj manual), nu se corectează distorsiunea lentilei; nu s-a testat pe telefoane fizice (doar cameră falsă și evenimente simulate).
+- README FR/IT/ES/PT/DE/HU: doar versiunea aliniată.
+
 ## 2.1.0 — 2026-10-27
 
 Anterior: v1.1.2. Recenzie 2026-10-27.

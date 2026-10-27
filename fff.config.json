@@ -1,0 +1,3 @@
+{
+  "permissions": ["getUserMedia", "deviceorientation", "geolocation", "serviceWorker", "localStorage"]
+}
