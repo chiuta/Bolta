@@ -1,5 +1,13 @@
 # Jurnal de modificări — Bolta
 
+## 2.3.0 — 2026-10-31
+
+Anterior: 2.2.0. Îmbină linia din hub (2.0.0, 2026-10-26) cu linia acestui depozit, ca aplicația să poată trece pe origine proprie fără pierderi.
+
+- Din hub: **fila „Previziune” (cer în timp)** — conjuncții și ocultații locale, traiectorie, noaptea derulată; 47 de chei de traducere; modulele kit `store` și `dialog`; testul `tests/forecast.test.mjs`; excepția justificată `i18n-parity` pentru tabelul CON_ROWS din `fff.config.json`.
+- Păstrat din depozit: modul senzori, modul cameră (RA), corecția nordului (2.1–2.2).
+- Cunoscut: testul de afișare semnalează 5 chei `sen.*` fără traducere în fr/it/es/pt/hu/de (cad pe engleză, ca în 2.2.0). `senzori.test.mjs` are 2 verificări eșuate și în 2.2.0.
+
 ## 2.2.0 — 2026-10-27
 
 Anterior: v2.1.0. Recenzie 2 (2026-10-27).
