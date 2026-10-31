@@ -6,7 +6,8 @@ Anterior: 2.2.0. Îmbină linia din hub (2.0.0, 2026-10-26) cu linia acestui dep
 
 - Din hub: **fila „Previziune” (cer în timp)** — conjuncții și ocultații locale, traiectorie, noaptea derulată; 47 de chei de traducere; modulele kit `store` și `dialog`; testul `tests/forecast.test.mjs`; excepția justificată `i18n-parity` pentru tabelul CON_ROWS din `fff.config.json`.
 - Păstrat din depozit: modul senzori, modul cameră (RA), corecția nordului (2.1–2.2).
-- Cunoscut: testul de afișare semnalează 5 chei `sen.*` fără traducere în fr/it/es/pt/hu/de (cad pe engleză, ca în 2.2.0). `senzori.test.mjs` are 2 verificări eșuate și în 2.2.0.
+- Traduceri completate pentru cheile `sen.*` și `ar.*` în fr/it/es/pt/hu/de (traduse asistat de AI, neverificate de vorbitori nativi); testul de afișare trece acum 30/30.
+- `tests/senzori.test.mjs`: simulează acordul de permisiune (`DeviceOrientationEvent.requestPermission`, expus de Chromium recent și refuzat în headless); 15/15.
 
 ## 2.2.0 — 2026-10-27
 
