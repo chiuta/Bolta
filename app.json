@@ -2,8 +2,8 @@
   "schema": 1,
   "slug": "bolta",
   "name": "Bolta — planetariu offline",
-  "version": "2.2.0",
-  "updated": "2026-10-27",
+  "version": "2.3.0",
+  "updated": "2026-10-31",
   "description": "Bolta: planetariu offline pentru orice loc și moment — cer proiectat, constelații, Soare, Lună, planete, evenimente apropiate și eclipsa totală din 2 august 2027.",
   "egress": [],
   "permissions": [
@@ -14,8 +14,8 @@
     "localStorage"
   ],
   "storageKeys": [],
-  "sizeBytes": 736544,
-  "sha256": "074d8a0ba9b254a45feb431970b05f10394cf9ef82de084136d33d252b87f9e3",
+  "sizeBytes": 806411,
+  "sha256": "0f0be82c3cdc387ab540d7898e82e2f982fa6c378f83764457b29a4ceed358f3",
   "csp": {
     "present": true,
     "directives": {
@@ -55,6 +55,8 @@
     },
     "modules": [
       "core",
+      "store",
+      "dialog",
       "label",
       "bundle"
     ]
@@ -63,9 +65,17 @@
     "version": "1.2.0",
     "modules": [
       "core",
+      "store",
+      "dialog",
       "label",
       "bundle"
     ]
   },
-  "selfSerializing": false
+  "selfSerializing": false,
+  "exceptions": [
+    {
+      "rule": "i18n-parity",
+      "reason": "Fals pozitiv: CON_ROWS nu este un tabel de traduceri, ci date astronomice (88 de constelații × 8 câmpuri separate prin „~”, rânduri separate prin \\n), verificate la construire; toate rândurile au 8 coloane."
+    }
+  ]
 }

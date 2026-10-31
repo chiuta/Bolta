@@ -1,5 +1,15 @@
 # Jurnal de modificări — Bolta
 
+## 2.3.0 — 2026-10-31
+
+Anterior: 2.2.0. Îmbină linia din hub (2.0.0, 2026-10-26) cu linia acestui depozit, ca aplicația să poată trece pe origine proprie fără pierderi.
+
+- Ținte tactile: casetele de bifare măsurau 13–18 px; acum 24 px (WCAG 2.5.8). Măsurat pe 360×740: 0 ținte sub 24 px, 0 texte sub 12 px.
+- Din hub: **fila „Previziune” (cer în timp)** — conjuncții și ocultații locale, traiectorie, noaptea derulată; 47 de chei de traducere; modulele kit `store` și `dialog`; testul `tests/forecast.test.mjs`; excepția justificată `i18n-parity` pentru tabelul CON_ROWS din `fff.config.json`.
+- Păstrat din depozit: modul senzori, modul cameră (RA), corecția nordului (2.1–2.2).
+- Traduceri completate pentru cheile `sen.*` și `ar.*` în fr/it/es/pt/hu/de (traduse asistat de AI, neverificate de vorbitori nativi); testul de afișare trece acum 30/30.
+- `tests/senzori.test.mjs`: simulează acordul de permisiune (`DeviceOrientationEvent.requestPermission`, expus de Chromium recent și refuzat în headless); 15/15.
+
 ## 2.2.0 — 2026-10-27
 
 Anterior: v2.1.0. Recenzie 2 (2026-10-27).

@@ -14,6 +14,8 @@ const browser = await chromium.launch({executablePath: process.env.CHROMIUM_PATH
 const ctx = await browser.newContext({viewport: {width: 420, height: 800}, locale: 'ro-RO'});
 const net = [], errs = [];
 await ctx.route(/^https?:/, r => { net.push(r.request().url()); r.abort(); });
+// Chromium recent expune DeviceOrientationEvent.requestPermission (headless: refuz); testul simulează acordul utilizatorului, ca pe iOS.
+await ctx.addInitScript(() => { if (window.DeviceOrientationEvent) window.DeviceOrientationEvent.requestPermission = () => Promise.resolve('granted'); });
 const page = await ctx.newPage();
 page.on('pageerror', e => errs.push(e.message));
 page.on('console', m => { if (/Content Security Policy|Refused to/i.test(m.text())) errs.push(m.text()); });
