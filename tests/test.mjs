@@ -6,14 +6,34 @@ import os from 'node:os';
 import path from 'node:path';
 import {fileURLToPath, pathToFileURL} from 'node:url';
 import {execFileSync} from 'node:child_process';
+import {createHash} from 'node:crypto';
 const require = createRequire('/opt/node-tools/package.json');
 const {chromium} = require('playwright');
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const APP_FILE = path.resolve(HERE, '..', 'index.html');
 const APP = pathToFileURL(APP_FILE).href;
-const {checkCspHashes} = await import(pathToFileURL(path.resolve(HERE, '..', '..', '..', 'fff-kit', 'lib', 'csp.mjs')).href);
+// Verificarea hash-urilor CSP: folosește fff-kit/lib/csp.mjs când există (hub: ../../../fff-kit; FFF_KIT=dir; clona de lângă hub), altfel implementarea minimă de mai jos
+// (aceeași regulă: fiecare script inline executabil trebuie să aibă 'sha256-…' în meta CSP), ca testul să ruleze și în depozitul autonom.
+async function loadCspCheck() {
+  const cands = [process.env.FFF_KIT, path.resolve(HERE, '..', '..', '..', 'fff-kit'), path.resolve(HERE, '..', '..', 'chiuta.github.io', 'fff-kit'), '/home/claude/chiuta.github.io/fff-kit'].filter(Boolean);
+  for (const c of cands) { const f = path.join(c, 'lib', 'csp.mjs'); if (fs.existsSync(f)) return (await import(pathToFileURL(f).href)).checkCspHashes; }
+  return (html) => {
+    const meta = (html.match(/<meta[^>]+http-equiv=["']Content-Security-Policy["'][^>]*>/i) || [])[0];
+    if (!meta) return {ok: true, missing: [], note: 'fără CSP'};
+    if (/script-src[^;"]*'unsafe-inline'/.test(meta)) return {ok: true, missing: [], note: 'unsafe-inline'};
+    const miss = [], re = /<script\b([^>]*)>([\s\S]*?)<\/script>/gi; let m;
+    while ((m = re.exec(html))) {
+      if (/\bsrc\s*=/i.test(m[1]) || !m[2].trim()) continue;
+      const t = (m[1].match(/\btype\s*=\s*["']?([^"'\s>]*)/i) || [0, ''])[1].toLowerCase();
+      if (t && !/^(text\/javascript|application\/javascript|module)$/.test(t)) continue;
+      const h = `'sha256-${createHash('sha256').update(m[2], 'utf8').digest('base64')}'`; if (!meta.includes(h)) miss.push(h);
+    }
+    return {ok: miss.length === 0, missing: miss, note: 'ok (minim)'};
+  };
+}
+const checkCspHashes = await loadCspCheck();
 const TMP = fs.mkdtempSync(path.join(process.env.BOLTA_TMP || os.tmpdir(), 'bolta-test-'));
-const AXE = process.env.AXE_PATH || '/tmp/claude-0/-home-claude/78529928-3825-51c3-b9bd-0e81655ab6bc/scratchpad/sweep/node_modules/axe-core/axe.min.js';
+const AXE = process.env.AXE_PATH || process.env.FFF_AXE || '/tmp/claude-0/-home-claude/78529928-3825-51c3-b9bd-0e81655ab6bc/scratchpad/sweep/node_modules/axe-core/axe.min.js';
 const ONLY = process.env.TEST_ONLY ? new RegExp(process.env.TEST_ONLY, 'i') : null;
 
 const tests = [], results = [], issues = [], report = {};
@@ -50,8 +70,9 @@ test('încărcare: fără erori, CSP valid, meta, fără handlere inline / eval 
   ok(!/manifest|serviceWorker/i.test(html.replace(/<!--fff:pwa:start[\s\S]*?<!--fff:pwa:end-->/g,'').replace(/<!--fff:kit:start[\s\S]*?<!--fff:kit:end-->/g,'').replace(/<script[^>]*id="fff-info"[\s\S]*?<\/script>/,'').replace(/(manifest|worker)-src [^;]*/g,'')), 'manifest / SW (în afara blocurilor kit/PWA)');
   ok(!/cnred/i.test(html), 'CNRED');
   const p = await newPage();
-  eq(await p.textContent('#app-version'), 'v 2.4.0 · 2026-11-02', '#app-version');
-  eq(await p.evaluate(() => document.querySelector('meta[name=application-version]').content), '2.4.0', 'versiune');
+  const APPJ = JSON.parse(fs.readFileSync(path.resolve(HERE, '..', 'app.json'), 'utf8'));
+  eq(await p.textContent('#app-version'), `v ${APPJ.version} · ${APPJ.updated}`, '#app-version');
+  eq(await p.evaluate(() => document.querySelector('meta[name=application-version]').content), APPJ.version, 'versiune');
   eq((await p.evaluate(() => window.__csp)).length, 0, 'violări CSP');
   eq(await p.evaluate(() => window.__bolta.ST.count), 1627, 'stele în catalog');
   const nl = await p.evaluate(() => Object.keys(localStorage).filter(k => !k.startsWith('fff.bolta.')));
@@ -459,8 +480,8 @@ test('export: SVG valid, PNG, tipărire, copie de siguranță loc + import + șt
   await p.evaluate(() => { const b = window.__bolta; b.saved.length = 0; });
   await p.setInputFiles('#plImport', fj); await p.waitForTimeout(300); eq(await p.evaluate(() => window.__bolta.saved.length), 1, 'import restabilește locul');
   await p.setInputFiles('#plImport', {name: 'rau.json', mimeType: 'application/json', buffer: Buffer.from('{ nu e json')}); await p.waitForTimeout(200); ok((await p.textContent('#plStatus')).length > 3, 'fișier invalid raportat'); eq(await p.evaluate(() => window.__bolta.saved.length), 1, 'fișier invalid nu strică datele');
-  const st = await p.evaluate(() => Object.keys(localStorage)); ok(st.every(k => k.startsWith('fff.bolta.')), 'chei localStorage: ' + st);
-  await p.click('#plClear'); await p.click('#cfYes'); await p.waitForTimeout(150); eq(await p.evaluate(() => Object.keys(localStorage).length), 0, 'ștergere totală');
+  const st = await p.evaluate(() => Object.keys(localStorage)); ok(st.every(k => k.startsWith('fff.bolta.') || k.startsWith('fff.place.')), 'chei localStorage: ' + st);
+  await p.click('#plClear'); await p.click('#cfYes'); await p.waitForTimeout(150); eq(await p.evaluate(() => Object.keys(localStorage).filter(k => !k.startsWith('fff.place.')).length), 0, 'ștergere totală (locația comună fff.place.* e partajată între aplicații)');
   await close(p);
 });
 test('persistență: setările și limba se păstrează la reîncărcare; localStorage blocat nu strică pagina', async () => {

@@ -1,5 +1,10 @@
 # Jurnal de modificări — Bolta
 
+## 2.4.2 — 2026-11-03
+
+- Corectat: versiunea afișată în pagină și în copia de siguranță era rămasă în urmă (2.4.0, iar subsolul static „1.0.0”); acum urmează `app.json`.
+- Testul principal rulează și în depozitul autonom (verificarea hash-urilor CSP are rezervă locală dacă `fff-kit/lib/csp.mjs` lipsește).
+
 ## 2.4.1 — 2026-11-03
 
 - Nou (Etapa 6, suita cer–timp): **locația, ora și fusul orar comune** cu Eclipsa-2027, Bolta, Horizons, Universul Observabil 3D, ORARIUM, CLEPSIDRA și Orar (modul `fff-place`): butonul „📍 Locație” (formular, 38 de orașe, geolocalizare doar la cerere și cu acord explicit, plic `place/fff` prin fișier/clipboard/QR/link), panoul **„Astea se întâmplă deasupra ta mâine”** (Soare, Lună, planete, eclipse; calcul local, fără rețea) și **alertă la eclipsă**. Pe aceeași origine locația se propagă singură; între adrese diferite, printr-un link/plic (o apăsare). Vezi docs/SUITA-CER-TIMP.md în hub. Jurnalul de teren (`FFF.jurnal`) apare în panou: observațiile care coincid cu o eclipsă vizibilă și butonul „Adaugă o observație în jurnal”. Locul planetariului urmează locația comună (și invers).
