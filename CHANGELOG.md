@@ -1,5 +1,9 @@
 # Jurnal de modificări — Bolta
 
+## 2.4.5 — 2026-11-08
+
+«Despre»: rând nou în limitele aplicației (cheia `ab.l8`, 8 limbi): pozițiile sunt comparate în teste la 20 de momente și locuri cu o bibliotecă de referință independentă.
+
 ## 2.4.2 — 2026-11-03
 
 - Corectat: versiunea afișată în pagină și în copia de siguranță era rămasă în urmă (2.4.0, iar subsolul static „1.0.0”); acum urmează `app.json`.
