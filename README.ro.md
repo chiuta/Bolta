@@ -2,7 +2,7 @@
 
 [English](README.md) · **Română** · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Versiune:** 2.4.8 · **Ultima actualizare:** 2026-11-10
+**Versiune:** 2.4.9 · **Ultima actualizare:** 2026-11-13
 
 **Stare:** stabil (modul senzori este nou și experimental pe dispozitive fără busolă absolută) · **Offline:** complet (legătura spre Eclipsa-2027 cere internet, doar la clic)
 
