@@ -14,13 +14,13 @@
     "localStorage"
   ],
   "storageKeys": [],
-  "sizeBytes": 1185789,
-  "sha256": "5559a6d75c0546bbc924b1a25c4246a185feae95e83ff4634a55db522ca5367f",
+  "sizeBytes": 1237822,
+  "sha256": "a59fb03bf6f32896c6c4123fbf1d979c32c79ed27c530df55a580aa663829294",
   "csp": {
     "present": true,
     "directives": {
       "default-src": "'none'",
-      "script-src": "sha256×13",
+      "script-src": "sha256×14",
       "style-src": "'unsafe-inline'",
       "img-src": "'self' data: blob:",
       "media-src": "data: blob:",
