@@ -1,5 +1,9 @@
 # Jurnal de modificări — Bolta
 
+## 2.4.10 — 2026-11-15
+
+- Nou: texturi fractale hiper-detaliate (fff-texturi 1.1.2) — fundalul și suprafețele mari (carduri, panouri, antete, butoane; filele și dialogurile ascunse la încărcare, când se deschid) primesc un material generat local (WebGL2, fără rețea și fără imagini), care se repetă fără cusătură; culorile aplicației rămân ale ei. Se oprește din dialogul „Transparență” sau cu `?notex=1`.
+
 ## 2.4.5 — 2026-11-08
 
 «Despre»: rând nou în limitele aplicației (cheia `ab.l8`, 8 limbi): pozițiile sunt comparate în teste la 20 de momente și locuri cu o bibliotecă de referință independentă.
