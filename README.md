@@ -2,7 +2,7 @@
 
 **English** · [Română](README.ro.md) · [Français](README.fr.md) · [Italiano](README.it.md) · [Español](README.es.md) · [Português](README.pt.md) · [Deutsch](README.de.md) · [Magyar](README.hu.md)
 
-**Version:** 2.5.1 · **Last updated:** 2026-11-15
+**Version:** 2.5.2 · **Last updated:** 2026-11-17
 
 **Status:** stable (the sensor mode is new and experimental on devices without an absolute compass) · **Offline:** complete (the link to Eclipsa-2027 needs internet, only when you click it)
 
