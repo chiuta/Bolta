@@ -3,7 +3,7 @@
   "slug": "bolta",
   "name": "Bolta — planetariu offline",
   "version": "2.5.3",
-  "updated": "2026-11-20",
+  "updated": "2026-11-22",
   "description": "Bolta: planetariu offline pentru orice loc și moment — cer proiectat, constelații, Soare, Lună, planete, evenimente apropiate și eclipsa totală din 2 august 2027.",
   "egress": [],
   "permissions": [
@@ -14,8 +14,8 @@
     "localStorage"
   ],
   "storageKeys": [],
-  "sizeBytes": 1369386,
-  "sha256": "29d732c315645a5111b963fe41589445ab7440ae8fad2af1b2e65946d6eb60c3",
+  "sizeBytes": 1369446,
+  "sha256": "23f72dfa63d211b6ee61cc414e7f2a11e5460245db19d2112b3e86a591b98e92",
   "csp": {
     "present": true,
     "directives": {
@@ -31,7 +31,8 @@
       "frame-src": "'none'",
       "object-src": "'none'",
       "worker-src": "'self' blob:",
-      "manifest-src": "'self'"
+      "manifest-src": "'self'",
+      "upgrade-insecure-requests": "''"
     },
     "scriptInline": "hash",
     "connect": "'none'"
